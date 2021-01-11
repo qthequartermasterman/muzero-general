@@ -171,7 +171,8 @@ class SelfPlay:
 
                 if render:
                     print(f"Played action: {self.game.action_to_string(action)}")
-                    self.game.render()
+                    if self.game.env.clock.step and not (self.game.env.clock.step % 100):  # Only print every 100 steps
+                        self.game.render()
 
                 game_history.store_search_statistics(root, self.config.action_space)
 
